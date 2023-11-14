@@ -1,0 +1,22 @@
+<button class="btn btn-primary" routerLink="/manage-registration">Add Registration</button>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Registration ID</th>
+      <th>Registration Date</th>
+      <th>Student</th>
+      <th>Course</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let registration of registrations">
+      <td>{{registration.registrationDate | date:'yyyy-MM-dd'}}</td>
+      <td>{{getStudentName(registration.studentId)}}</td>
+      <td>{{getCourseName(registration.courseId)}}</td>
+      <td>
+        <button class="btn btn-warning" [routerLink]="['/manage-registration', registration.registrationId]">Edit</button>
+        <button class="btn btn-danger" (click)="deleteRegistration(registration.registrationId)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

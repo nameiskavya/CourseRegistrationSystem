@@ -1,0 +1,21 @@
+<form (ngSubmit)="saveStudent()">
+    <div class="form-group">
+      <label>Student Number</label>
+      <input type="text" class="form-control" [(ngModel)]="student.studentNumber" name="StudentNumber" required pattern="[0-9]{4}">
+    </div>
+    <div class="form-group">
+      <label>First Name</label>
+      <input type="text" class="form-control" [(ngModel)]="student.firstName" name="FirstName" required>
+    </div>
+    <div class="form-group">
+      <label>Last Name</label>
+      <input type="text" class="form-control" [(ngModel)]="student.lastName" name="LastName" required> 
+    </div>
+    <div class="form-group">
+      <label>Birth Date</label>
+      <input type="date" class="form-control" [ngModel]="student.birthDate | date:'yyyy-MM-dd'" 
+             (ngModelChange)="student.birthDate = $event" name="BirthDate" required> 
+      <div *ngIf="isDateInFuture(student.birthDate)" class="error">Birth date cannot be in the future</div>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
